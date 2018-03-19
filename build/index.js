@@ -1278,7 +1278,7 @@ var InteractiveTable = function (_Component) {
 exports.default = InteractiveTable;
 ;
 
-AwesomeTable.propTypes = {
+InteractiveTable.propTypes = {
     tableStyles: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
     dataList: _propTypes2.default.arrayOf(_propTypes2.default.object).isRequired,
     columns: _propTypes2.default.object.isRequired,
@@ -2164,7 +2164,7 @@ var InteractiveTableHeaderCell = function (_Component) {
 exports.default = InteractiveTableHeaderCell;
 
 
-AwesomeTableHeaderCell.propTypes = {
+InteractiveTableHeaderCell.propTypes = {
     dataId: _propTypes2.default.number.isRequired,
     style: _propTypes2.default.object,
     sortingActiveState: _propTypes2.default.bool.isRequired,
@@ -2300,7 +2300,7 @@ var InteractiveTablePagination = function (_Component) {
 exports.default = InteractiveTablePagination;
 
 
-AwesomeTablePagination.propTypes = {
+InteractiveTablePagination.propTypes = {
     currentPagenumber: _propTypes2.default.number.isRequired,
     showAllRows: _propTypes2.default.bool,
     pageCount: _propTypes2.default.number.isRequired,
