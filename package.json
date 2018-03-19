@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "A completely customizable React Table with search and sort options",
   "main": "build/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Marujah/React-interactive-Table.git"
+  },
   "peerDependencies": {
     "react": "^16.2.0"
   },
@@ -19,6 +23,11 @@
     "name": "marujah",
     "email": "marujah@gmail.com"
   },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Marujah/React-interactive-Table/issues"
+  },
+  "homepage": "https://github.com/Marujah/React-interactive-Table#readme",
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
