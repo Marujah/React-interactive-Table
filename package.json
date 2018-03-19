@@ -1,0 +1,35 @@
+{
+  "name": "react-awesome-table",
+  "version": "0.0.1",
+  "description": "A completely customizable React Table with search and sort options",
+  "main": "build/index.js",
+  "peerDependencies": {
+    "react": "^16.2.0"
+  },
+  "dependencies": {
+    "react": "^16.2.0",
+    "webpack": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --watch",
+    "build": "webpack"
+  },
+  "author": {
+    "name": "Marouen Mhiri",
+    "email": "marujah@gmail.com"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "css-loader": "^0.28.11",
+    "file-loader": "^1.1.11",
+    "prop-types": "^15.6.1",
+    "style-loader": "^0.20.3",
+    "var": "^0.3.2"
+  }
+}
