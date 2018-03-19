@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import AwesomeTableHeaderCell from './AwesomeTableHeaderCell';
-import AwesomeTablePagination from './AwesomeTablePagination';
+import InteractiveTableHeaderCell from './InteractiveTableHeaderCell';
+import InteractiveTablePagination from './InteractiveTablePagination';
 
-export default class AwesomeTable extends Component {
+export default class InteractiveTable extends Component {
     constructor(props){
       super(props);
       this.state= {
@@ -163,7 +163,7 @@ export default class AwesomeTable extends Component {
                             <div className="row header">
                                 {personsTableHeader.map( (key,idx) => {
                                     return (
-                                        <AwesomeTableHeaderCell
+                                        <InteractiveTableHeaderCell
                                             key={idx}
                                             dataId={idx}
                                             style={cellWidth}
@@ -198,7 +198,7 @@ export default class AwesomeTable extends Component {
                         </div>
                         {paging
                         && (
-                            <AwesomeTablePagination
+                            <InteractiveTablePagination
                                 currentPagenumber={currentPagenumber}
                                 showAllRows={showAllRows}
                                 pageCount={pageCount}

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class AwesomeTablePagination extends Component {
+export default class InteractiveTablePagination extends Component {
     constructor(props) {
         super(props);
         this.handleCurrentPage = this.handleCurrentPage.bind(this);

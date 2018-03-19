@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 
-export default class AwesomeTableHeaderCell extends Component {
+export default class InteractiveTableHeaderCell extends Component {
 
     onHeaderItemClick(item) {
         this.props.onHeaderItemClick(item, this.props.dataId);

@@ -1,16 +1,16 @@
-# React-Awesome-Table (RAT)
+# React-interactive-Table (RiT)
 =========
 
-React-Awesome-Table (RAT) is a completely customizable React table having some configurable features like search und paging.
+React-interactive-Table (RiT) is a completely customizable React table having some configurable features like search und paging.
 
 ## Installation
 
-  `npm install --save-dev react-awesome-table`
+  `npm install --save-dev react-interactive-table`
 
 ## Usage
 
 ```jsx
-import AwesomeTable from 'react-awesome-table';
+import InteractiveTable from 'react-interactive-table';
 
 export default class myClass extends React.Component {
     ...
@@ -21,7 +21,7 @@ export default class myClass extends React.Component {
         ...
         ]
         return (
-            <AwesomeTable
+            <InteractiveTable
                 tableStyles={'responsive'}
                 dataList={data} 
                 columns={
