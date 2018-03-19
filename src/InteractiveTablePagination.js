@@ -58,7 +58,7 @@ export default class InteractiveTablePagination extends Component {
     }
 }
 
-AwesomeTablePagination.propTypes = {
+InteractiveTablePagination.propTypes = {
     currentPagenumber: PropTypes.number.isRequired,
     showAllRows: PropTypes.bool,
     pageCount: PropTypes.number.isRequired,

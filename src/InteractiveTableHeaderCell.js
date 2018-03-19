@@ -49,7 +49,7 @@ export default class InteractiveTableHeaderCell extends Component {
     }
 }
 
-AwesomeTableHeaderCell.propTypes = {
+InteractiveTableHeaderCell.propTypes = {
     dataId: PropTypes.number.isRequired,
     style: PropTypes.object,
     sortingActiveState: PropTypes.bool.isRequired,

@@ -236,7 +236,7 @@ export default class InteractiveTable extends Component {
     }
   };
 
-  AwesomeTable.propTypes = {
+  InteractiveTable.propTypes = {
     tableStyles: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
     dataList: PropTypes.arrayOf(PropTypes.object).isRequired,
     columns: PropTypes.object.isRequired,
