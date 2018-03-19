@@ -972,13 +972,13 @@ var _propTypes = __webpack_require__(2);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _AwesomeTableHeaderCell = __webpack_require__(14);
+var _InteractiveTableHeaderCell = __webpack_require__(14);
 
-var _AwesomeTableHeaderCell2 = _interopRequireDefault(_AwesomeTableHeaderCell);
+var _InteractiveTableHeaderCell2 = _interopRequireDefault(_InteractiveTableHeaderCell);
 
-var _AwesomeTablePagination = __webpack_require__(15);
+var _InteractiveTablePagination = __webpack_require__(15);
 
-var _AwesomeTablePagination2 = _interopRequireDefault(_AwesomeTablePagination);
+var _InteractiveTablePagination2 = _interopRequireDefault(_InteractiveTablePagination);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -988,13 +988,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AwesomeTable = function (_Component) {
-    _inherits(AwesomeTable, _Component);
+var InteractiveTable = function (_Component) {
+    _inherits(InteractiveTable, _Component);
 
-    function AwesomeTable(props) {
-        _classCallCheck(this, AwesomeTable);
+    function InteractiveTable(props) {
+        _classCallCheck(this, InteractiveTable);
 
-        var _this = _possibleConstructorReturn(this, (AwesomeTable.__proto__ || Object.getPrototypeOf(AwesomeTable)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (InteractiveTable.__proto__ || Object.getPrototypeOf(InteractiveTable)).call(this, props));
 
         _this.state = {
             initialItems: props.dataList,
@@ -1018,7 +1018,7 @@ var AwesomeTable = function (_Component) {
         return _this;
     }
 
-    _createClass(AwesomeTable, [{
+    _createClass(InteractiveTable, [{
         key: 'asc',
         value: function asc(a, b) {
             var sortValue = this.state.sortValue;
@@ -1195,7 +1195,7 @@ var AwesomeTable = function (_Component) {
                                 'div',
                                 { className: 'row header' },
                                 personsTableHeader.map(function (key, idx) {
-                                    return _react2.default.createElement(_AwesomeTableHeaderCell2.default, {
+                                    return _react2.default.createElement(_InteractiveTableHeaderCell2.default, {
                                         key: idx,
                                         dataId: idx,
                                         style: cellWidth,
@@ -1231,7 +1231,7 @@ var AwesomeTable = function (_Component) {
                                 );
                             })
                         ),
-                        paging && _react2.default.createElement(_AwesomeTablePagination2.default, {
+                        paging && _react2.default.createElement(_InteractiveTablePagination2.default, {
                             currentPagenumber: currentPagenumber,
                             showAllRows: showAllRows,
                             pageCount: pageCount,
@@ -1272,10 +1272,10 @@ var AwesomeTable = function (_Component) {
         }
     }]);
 
-    return AwesomeTable;
+    return InteractiveTable;
 }(_react.Component);
 
-exports.default = AwesomeTable;
+exports.default = InteractiveTable;
 ;
 
 AwesomeTable.propTypes = {
@@ -2096,16 +2096,16 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AwesomeTableHeaderCell = function (_Component) {
-    _inherits(AwesomeTableHeaderCell, _Component);
+var InteractiveTableHeaderCell = function (_Component) {
+    _inherits(InteractiveTableHeaderCell, _Component);
 
-    function AwesomeTableHeaderCell() {
-        _classCallCheck(this, AwesomeTableHeaderCell);
+    function InteractiveTableHeaderCell() {
+        _classCallCheck(this, InteractiveTableHeaderCell);
 
-        return _possibleConstructorReturn(this, (AwesomeTableHeaderCell.__proto__ || Object.getPrototypeOf(AwesomeTableHeaderCell)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (InteractiveTableHeaderCell.__proto__ || Object.getPrototypeOf(InteractiveTableHeaderCell)).apply(this, arguments));
     }
 
-    _createClass(AwesomeTableHeaderCell, [{
+    _createClass(InteractiveTableHeaderCell, [{
         key: 'onHeaderItemClick',
         value: function onHeaderItemClick(item) {
             this.props.onHeaderItemClick(item, this.props.dataId);
@@ -2158,10 +2158,10 @@ var AwesomeTableHeaderCell = function (_Component) {
         }
     }]);
 
-    return AwesomeTableHeaderCell;
+    return InteractiveTableHeaderCell;
 }(_react.Component);
 
-exports.default = AwesomeTableHeaderCell;
+exports.default = InteractiveTableHeaderCell;
 
 
 AwesomeTableHeaderCell.propTypes = {
@@ -2204,13 +2204,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var AwesomeTablePagination = function (_Component) {
-    _inherits(AwesomeTablePagination, _Component);
+var InteractiveTablePagination = function (_Component) {
+    _inherits(InteractiveTablePagination, _Component);
 
-    function AwesomeTablePagination(props) {
-        _classCallCheck(this, AwesomeTablePagination);
+    function InteractiveTablePagination(props) {
+        _classCallCheck(this, InteractiveTablePagination);
 
-        var _this = _possibleConstructorReturn(this, (AwesomeTablePagination.__proto__ || Object.getPrototypeOf(AwesomeTablePagination)).call(this, props));
+        var _this = _possibleConstructorReturn(this, (InteractiveTablePagination.__proto__ || Object.getPrototypeOf(InteractiveTablePagination)).call(this, props));
 
         _this.handleCurrentPage = _this.handleCurrentPage.bind(_this);
         _this.changeCurrentPage = _this.changeCurrentPage.bind(_this);
@@ -2218,7 +2218,7 @@ var AwesomeTablePagination = function (_Component) {
         return _this;
     }
 
-    _createClass(AwesomeTablePagination, [{
+    _createClass(InteractiveTablePagination, [{
         key: 'handleCurrentPage',
         value: function handleCurrentPage(event) {
             var type = event.currentTarget.getAttribute('data-counter');
@@ -2294,10 +2294,10 @@ var AwesomeTablePagination = function (_Component) {
         }
     }]);
 
-    return AwesomeTablePagination;
+    return InteractiveTablePagination;
 }(_react.Component);
 
-exports.default = AwesomeTablePagination;
+exports.default = InteractiveTablePagination;
 
 
 AwesomeTablePagination.propTypes = {

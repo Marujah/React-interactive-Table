@@ -1,7 +1,7 @@
 var path = require('path');
 
 module.exports = {
-  entry: './src/AwesomeTable.js',
+  entry: './src/InteractiveTable.js',
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'index.js',
