@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-table",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A completely customizable React Table with search and sort options",
   "main": "build/index.js",
   "repository": {
