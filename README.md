@@ -5,7 +5,7 @@ React-interactive-Table (RiT) is a completely customizable React table having so
 
 ## Installation
 
-  `npm install --save-dev react-interactive-table`
+  `npm install --save react-interactive-table`
 
 ## Usage
 
