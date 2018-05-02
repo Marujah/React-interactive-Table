@@ -1023,10 +1023,18 @@ var InteractiveTable = function (_Component) {
         value: function asc(a, b) {
             var sortValue = this.state.sortValue;
 
-            if (typeof a[sortValue] === 'undefined') return 0;
-            if (typeof a[sortValue] === 'number') return a[sortValue] - b[sortValue];
-            if (a[sortValue].toLowerCase() < b[sortValue].toLowerCase()) return -1;
-            if (a[sortValue].toLowerCase() > b[sortValue].toLowerCase()) return 1;
+            if (typeof a[sortValue] === 'undefined') {
+                return 0;
+            }
+            if (typeof a[sortValue] === 'number') {
+                return a[sortValue] - b[sortValue];
+            }
+            if (a[sortValue].toLowerCase() < b[sortValue].toLowerCase()) {
+                return -1;
+            }
+            if (a[sortValue].toLowerCase() > b[sortValue].toLowerCase()) {
+                return 1;
+            }
             return 0;
         }
     }, {
@@ -1034,10 +1042,18 @@ var InteractiveTable = function (_Component) {
         value: function desc(a, b) {
             var sortValue = this.state.sortValue;
 
-            if (typeof a[sortValue] === 'undefined') return 0;
-            if (typeof a[sortValue] === 'number') return b[sortValue] - a[sortValue];
-            if (a[sortValue].toLowerCase() < b[sortValue].toLowerCase()) return 1;
-            if (a[sortValue].toLowerCase() > b[sortValue].toLowerCase()) return -1;
+            if (typeof a[sortValue] === 'undefined') {
+                return 0;
+            }
+            if (typeof a[sortValue] === 'number') {
+                return b[sortValue] - a[sortValue];
+            }
+            if (a[sortValue].toLowerCase() < b[sortValue].toLowerCase()) {
+                return 1;
+            }
+            if (a[sortValue].toLowerCase() > b[sortValue].toLowerCase()) {
+                return -1;
+            }
             return 0;
         }
     }, {
@@ -1072,7 +1088,8 @@ var InteractiveTable = function (_Component) {
                 });
             });
             this.setState({
-                items: newArr
+                items: newArr,
+                showAllRows: true
             });
         }
     }, {
@@ -1141,7 +1158,13 @@ var InteractiveTable = function (_Component) {
                 { className: 'limiter', style: MyAwesomeTableStyles },
                 _react2.default.createElement(
                     'svg',
-                    { 'aria-hidden': 'true', style: { position: 'absolute', width: '0', height: '0', overflow: 'hidden' }, version: '1.1', xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink' },
+                    { 'aria-hidden': 'true',
+                        style: {
+                            position: 'absolute',
+                            width: '0',
+                            height: '0',
+                            overflow: 'hidden'
+                        }, version: '1.1', xmlns: 'http://www.w3.org/2000/svg', xmlnsXlink: 'http://www.w3.org/1999/xlink' },
                     _react2.default.createElement(
                         'defs',
                         null,
@@ -1164,16 +1187,6 @@ var InteractiveTable = function (_Component) {
                                 'triangle-down'
                             ),
                             _react2.default.createElement('path', { d: 'M5 6h10l-5 9-5-9z' })
-                        ),
-                        _react2.default.createElement(
-                            'symbol',
-                            { id: 'icon-sort', viewBox: '0 0 16 28' },
-                            _react2.default.createElement(
-                                'title',
-                                null,
-                                'sort'
-                            ),
-                            _react2.default.createElement('path', { d: 'M16 17c0 0.266-0.109 0.516-0.297 0.703l-7 7c-0.187 0.187-0.438 0.297-0.703 0.297s-0.516-0.109-0.703-0.297l-7-7c-0.187-0.187-0.297-0.438-0.297-0.703 0-0.547 0.453-1 1-1h14c0.547 0 1 0.453 1 1zM16 11c0 0.547-0.453 1-1 1h-14c-0.547 0-1-0.453-1-1 0-0.266 0.109-0.516 0.297-0.703l7-7c0.187-0.187 0.438-0.297 0.703-0.297s0.516 0.109 0.703 0.297l7 7c0.187 0.187 0.297 0.438 0.297 0.703z' })
                         )
                     )
                 ),
@@ -1205,14 +1218,14 @@ var InteractiveTable = function (_Component) {
                                         onHeaderItemClick: _this3.headerItemClick });
                                 })
                             ),
-                            !showAllRows && paging && paging.maxRows && paging.maxRows > 0 ? items.slice(currentPagenumber * paging.maxRows, currentPagenumber * paging.maxRows + paging.maxRows).map(function (item, idx) {
+                            !showAllRows && paging && paging.maxRows && paging.maxRows > 0 && pageCount > 1 ? items.slice(currentPagenumber * paging.maxRows, currentPagenumber * paging.maxRows + paging.maxRows).map(function (item, idx) {
                                 return _react2.default.createElement(
                                     'div',
                                     { className: 'row', key: idx },
-                                    Object.keys(columns).map(function (filter, idx) {
+                                    Object.keys(columns).map(function (filter, indx) {
                                         return _react2.default.createElement(
                                             'div',
-                                            { className: 'cell', style: cellWidth, key: idx },
+                                            { className: 'cell', style: cellWidth, key: indx },
                                             item[filter]
                                         );
                                     })
@@ -1221,17 +1234,17 @@ var InteractiveTable = function (_Component) {
                                 return _react2.default.createElement(
                                     'div',
                                     { className: 'row', key: idx },
-                                    Object.keys(columns).map(function (filter, idx) {
+                                    Object.keys(columns).map(function (filter, indx) {
                                         return _react2.default.createElement(
                                             'div',
-                                            { className: 'cell', key: idx },
+                                            { className: 'cell', key: indx },
                                             item[filter]
                                         );
                                     })
                                 );
                             })
                         ),
-                        paging && _react2.default.createElement(_InteractiveTablePagination2.default, {
+                        paging && pageCount > 1 && _react2.default.createElement(_InteractiveTablePagination2.default, {
                             currentPagenumber: currentPagenumber,
                             showAllRows: showAllRows,
                             pageCount: pageCount,
@@ -1276,7 +1289,7 @@ var InteractiveTable = function (_Component) {
 }(_react.Component);
 
 exports.default = InteractiveTable;
-;
+
 
 InteractiveTable.propTypes = {
     tableStyles: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.object]),
@@ -2113,30 +2126,49 @@ var InteractiveTableHeaderCell = function (_Component) {
     }, {
         key: 'getSortingIcon',
         value: function getSortingIcon(sortingItem) {
-            var icon = void 0;
+            var upClassName = ['icon', 'triangle-up'];
+            var downClassName = ['icon', 'triangle-down'];
             if (sortingItem.sortable) {
                 if (sortingItem.active) {
                     if (this.props.sorting) {
-                        icon = _react2.default.createElement(
-                            'svg',
-                            { className: 'icon' },
-                            _react2.default.createElement('use', { xlinkHref: '#icon-triangle-up' })
-                        );
+                        upClassName.push('active');
+                        var index = downClassName.indexOf('active');
+                        if (index > -1) {
+                            downClassName.slice(index, 1);
+                        }
+                        console.log('upClassName', upClassName);
                     } else {
-                        icon = _react2.default.createElement(
-                            'svg',
-                            { className: 'icon' },
-                            _react2.default.createElement('use', { xlinkHref: '#icon-triangle-down' })
-                        );
+                        downClassName.push('active');
+                        var _index = upClassName.indexOf('active');
+                        if (_index > -1) {
+                            upClassName.slice(_index, 1);
+                        }
                     }
                 } else {
-                    icon = _react2.default.createElement(
-                        'svg',
-                        { className: 'icon' },
-                        _react2.default.createElement('use', { xlinkHref: '#icon-sort' })
-                    );
+                    var indexUp = upClassName.indexOf('active');
+                    var indexDown = downClassName.indexOf('active');
+                    if (indexUp > -1) {
+                        upClassName.slice(indexUp, 1);
+                    }
+                    if (indexDown > -1) {
+                        downClassName.slice(indexDown, 1);
+                    }
                 }
             }
+            var icon = _react2.default.createElement(
+                'span',
+                { className: 'icons-container' },
+                _react2.default.createElement(
+                    'svg',
+                    { className: upClassName.join(' ') },
+                    _react2.default.createElement('use', { xlinkHref: '#icon-triangle-up' })
+                ),
+                _react2.default.createElement(
+                    'svg',
+                    { className: downClassName.join(' ') },
+                    _react2.default.createElement('use', { xlinkHref: '#icon-triangle-down' })
+                )
+            );
             return icon;
         }
     }, {
@@ -2212,6 +2244,9 @@ var InteractiveTablePagination = function (_Component) {
 
         var _this = _possibleConstructorReturn(this, (InteractiveTablePagination.__proto__ || Object.getPrototypeOf(InteractiveTablePagination)).call(this, props));
 
+        _this.state = {
+            showAllRows: false
+        };
         _this.handleCurrentPage = _this.handleCurrentPage.bind(_this);
         _this.changeCurrentPage = _this.changeCurrentPage.bind(_this);
         _this.showAllRows = _this.showAllRows.bind(_this);
@@ -2239,9 +2274,9 @@ var InteractiveTablePagination = function (_Component) {
         value: function render() {
             var _props = this.props,
                 currentPagenumber = _props.currentPagenumber,
-                showAllRows = _props.showAllRows,
                 pageCount = _props.pageCount,
                 paging = _props.paging;
+            var showAllRows = this.state.showAllRows;
 
             var PreviousBtnText = paging.prevBtn && typeof paging.prevBtn === 'string' ? paging.prevBtn : 'prev';
             var NextBtnText = paging.nextBtn && typeof paging.nextBtn === 'string' ? paging.nextBtn : 'next';
@@ -2291,6 +2326,22 @@ var InteractiveTablePagination = function (_Component) {
                     NextBtnText
                 )
             );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.setState({
+                showAllRows: this.props.showAllRows
+            });
+        }
+    }, {
+        key: 'componentWillReceiveProps',
+        value: function componentWillReceiveProps(nextProps) {
+            if (nextProps.showAllRows !== this.state.showAllRows) {
+                this.setState({
+                    showAllRows: nextProps.showAllRows
+                });
+            }
         }
     }]);
 
@@ -2369,7 +2420,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "*, *:before, *:after {\n\tbox-sizing: border-box;\n}\n\n.icon {\n    display: inline-block;\n    width: 1em;\n    height: 1em;\n    stroke-width: 0;\n    stroke: currentColor;\n    fill: currentColor;\n    vertical-align: middle;\n    margin: 0 4px;\n}\n  \n.limiter {\n    width: 100%;\n    margin: 0 auto;\n}\n  \n.container-table100 {\n    width: 100%;\n  \n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -moz-box;\n    display: -ms-flexbox;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-wrap: wrap;\n    padding: 33px 30px;\n}\n\n.search-container {\n    flex-basis: 100%;\n    margin-bottom: 20px;\n    max-width: 100%;\n}\n\n.table-search {\n    width: 250px;\n    box-sizing: border-box;\n    border: 2px solid #ccc;\n    border-radius: 4px;\n    font-size: 16px;\n    background-color: white;\n    background-position: 10px 10px; \n    background-repeat: no-repeat;\n    padding: 12px 20px;\n}  \n.wrap-table100 {\n    flex-basis: 100%;\n    max-width: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    box-shadow: 0 0 10px #808080;\n}\n  \n.table {\n    width: 100%;\n    display: table;\n    margin: 0;\n}\n  \n@media screen and (max-width: 768px) {\n    .table {\n      display: block;\n    }\n}\n  \n.row {\n    display: table-row;\n    background: #fff;\n}\n  \n.row.header {\n    color: #ffffff;\n    background: #5668ec;\n}\n  \n@media screen and (max-width: 768px) {\n    .row {\n      display: block;\n    }\n  \n    .row.header {\n      padding: 0;\n      height: 0px;\n    }\n  \n    .row.header .cell {\n      display: none;\n    }\n  \n    .row .cell:before {\n      font-family: Poppins-Bold;\n      font-size: 12px;\n      color: #808080;\n      line-height: 1.2;\n      text-transform: uppercase;\n      font-weight: unset !important;\n  \n      margin-bottom: 13px;\n      content: attr(data-title);\n      min-width: 98px;\n      display: block;\n    }\n}\n  \n.cell {\n    display: table-cell;\n}\n  \n@media screen and (max-width: 768px) {\n    .cell {\n      display: block;\n    }\n}\n  \n.row .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 15px;\n    color: #666666;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 20px;\n    padding-bottom: 20px;\n    padding-left: 10px;\n    border-bottom: 1px solid #f2f2f2;\n}\n  \n.row.header .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 18px;\n    color: #fff;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 19px;\n    padding-bottom: 19px;\n}\n  \n.table, .row {\n    width: 100% !important;\n}\n  \n.row:hover {\n    background-color: #f1f1f7;\n    cursor: pointer;\n}\n\n.row.header:hover {\n    background-color: #354ae6;\n    cursor: pointer;\n}\n  \n@media (max-width: 768px) {\n    .row {\n      border-bottom: 1px solid #f2f2f2;\n      padding-bottom: 18px;\n      padding-top: 10px;\n      padding-right: 15px;\n      margin: 0;\n    }\n    \n    .row .cell {\n      border: none;\n      padding-left: 30px;\n      padding-top: 0px;\n      padding-bottom: 0px;\n    }\n    \n    .row .cell {\n      font-family: \"Poppins-Regular\";\n      font-size: 18px;\n      color: #555555;\n      line-height: 1.2;\n      font-weight: unset !important;\n    }\n  \n    .table, .row, .cell {\n      width: 100% !important;\n    }\n}\n\n.pagination-container {\n    flex: 0 1 100%;\n    margin: 20px auto;\n    padding: 10px;\n    text-align: center;\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    color: #666666;\n    font-family: \"Poppins-Regular\";\n}\n\n.pagination-container .show-all-container {\n    margin-top: 10px;\n}\n.pagination-container .show-all-container input {\n    margin-right: 8px;\n}\n\n.pagination-container select {\n    font-size: 14px;\n}\n.pagination-container .pagination-control {\n    background-color: #5668ec; /* Green */\n    border: none;\n    color: #FFFFFF;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 16px;\n    outline: 0;\n    border-radius: 4px;\n    padding: 20px;\n    font-weight: 700;\n    cursor: pointer;\n}\n\n.pagination-container .pagination-control:hover {\n    background-color: #354ae6;\n}\n\n.pagination-container .pagination-control:disabled {\n    background-color: #e7e7e7;\n    color: grey;\n    cursor: not-allowed;\n}", ""]);
+exports.push([module.i, "*, *:before, *:after {\n\tbox-sizing: border-box;\n}\n\n.icons-container {\n    position: relative;\n}\n.icon {\n    display: inline-block;\n    width: 0.8em;\n    height: 0.8em;\n    stroke-width: 0;\n    stroke: currentColor;\n    fill: currentColor;\n    vertical-align: middle;\n    margin: 0 4px;\n}\n.icon.triangle-up {\n    position: absolute;\n    opacity: 0.4;\n    top: 0px;\n    left: 0px;\n}\n.icon.triangle-down {\n    position: absolute;\n    opacity: 0.4;\n    top: 0.5em;\n    left: 0px;\n}\n.icon.active {\n    opacity: 1;\n}\n.limiter {\n    width: 100%;\n    margin: 0 auto;\n}\n  \n.container-table100 {\n    width: 100%;\n  \n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -moz-box;\n    display: -ms-flexbox;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-wrap: wrap;\n    padding: 33px 30px;\n}\n\n.search-container {\n    flex-basis: 100%;\n    margin-bottom: 20px;\n    max-width: 100%;\n}\n\n.table-search {\n    width: 250px;\n    box-sizing: border-box;\n    border: 2px solid #ccc;\n    border-radius: 4px;\n    font-size: 16px;\n    background-color: white;\n    background-position: 10px 10px; \n    background-repeat: no-repeat;\n    padding: 12px 20px;\n}  \n.wrap-table100 {\n    flex-basis: 100%;\n    max-width: 100%;\n    border-radius: 10px;\n    overflow: hidden;\n    box-shadow: 0 0 10px #808080;\n}\n  \n.table {\n    width: 100%;\n    display: table;\n    margin: 0;\n}\n  \n@media screen and (max-width: 768px) {\n    .table {\n      display: block;\n    }\n}\n  \n.row {\n    display: table-row;\n    background: #fff;\n}\n  \n.row.header {\n    color: #ffffff;\n    background: #5668ec;\n}\n  \n@media screen and (max-width: 768px) {\n    .row {\n      display: block;\n    }\n  \n    .row.header {\n      padding: 0;\n      height: 0px;\n    }\n  \n    .row.header .cell {\n      display: none;\n    }\n  \n    .row .cell:before {\n      font-family: Poppins-Bold;\n      font-size: 12px;\n      color: #808080;\n      line-height: 1.2;\n      text-transform: uppercase;\n      font-weight: unset !important;\n  \n      margin-bottom: 13px;\n      content: attr(data-title);\n      min-width: 98px;\n      display: block;\n    }\n}\n  \n.cell {\n    display: table-cell;\n}\n  \n@media screen and (max-width: 768px) {\n    .cell {\n      display: block;\n    }\n}\n  \n.row .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 15px;\n    color: #666666;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 20px;\n    padding-bottom: 20px;\n    padding-left: 10px;\n    border-bottom: 1px solid #f2f2f2;\n}\n  \n.row.header .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 18px;\n    color: #fff;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 19px;\n    padding-bottom: 19px;\n}\n  \n.table, .row {\n    width: 100% !important;\n}\n  \n.row:hover {\n    background-color: #f1f1f7;\n    cursor: pointer;\n}\n\n.row.header:hover {\n    background-color: #354ae6;\n    cursor: pointer;\n}\n  \n@media (max-width: 768px) {\n    .row {\n      border-bottom: 1px solid #f2f2f2;\n      padding-bottom: 18px;\n      padding-top: 10px;\n      padding-right: 15px;\n      margin: 0;\n    }\n    \n    .row .cell {\n      border: none;\n      padding-left: 30px;\n      padding-top: 0px;\n      padding-bottom: 0px;\n    }\n    \n    .row .cell {\n      font-family: \"Poppins-Regular\";\n      font-size: 18px;\n      color: #555555;\n      line-height: 1.2;\n      font-weight: unset !important;\n    }\n  \n    .table, .row, .cell {\n      width: 100% !important;\n    }\n}\n\n.pagination-container {\n    flex: 0 1 100%;\n    margin: 20px auto;\n    padding: 10px;\n    text-align: center;\n    display: flex;\n    justify-content: space-around;\n    align-items: center;\n    color: #666666;\n    font-family: \"Poppins-Regular\";\n}\n\n.pagination-container .show-all-container {\n    margin-top: 10px;\n}\n.pagination-container .show-all-container input {\n    margin-right: 8px;\n}\n\n.pagination-container select {\n    font-size: 14px;\n}\n.pagination-container .pagination-control {\n    background-color: #5668ec; /* Green */\n    border: none;\n    color: #FFFFFF;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 16px;\n    outline: 0;\n    border-radius: 4px;\n    padding: 20px;\n    font-weight: 700;\n    cursor: pointer;\n}\n\n.pagination-container .pagination-control:hover {\n    background-color: #354ae6;\n}\n\n.pagination-container .pagination-control:disabled {\n    background-color: #e7e7e7;\n    color: grey;\n    cursor: not-allowed;\n}", ""]);
 
 // exports
 
@@ -2528,7 +2579,7 @@ exports = module.exports = __webpack_require__(7)(false);
 
 
 // module
-exports.push([module.i, "*, *:before, *:after {\n\tbox-sizing: border-box;\n}\n\n.icon {\n    display: inline-block;\n    width: 1em;\n    height: 1em;\n    stroke-width: 0;\n    stroke: currentColor;\n    fill: currentColor;\n    vertical-align: middle;\n    margin: 0 4px;\n}\n  \n.limiter {\n    width: 100%;\n    margin: 0 auto;\n}\n  \n.container-table100 {\n    width: 100%;\n  \n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -moz-box;\n    display: -ms-flexbox;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-wrap: wrap;\n    padding: 33px 30px;\n}\n\n.search-container {\n    flex-basis: 100%;\n    margin-bottom: 20px;\n    max-width: 100%;\n}\n\n.table-search {\n    width: 250px;\n    box-sizing: border-box;\n    border: 2px solid #ccc;\n    font-size: 16px;\n    background-color: white;\n    background-position: 10px 10px; \n    background-repeat: no-repeat;\n    padding: 12px 20px;\n}  \n.wrap-table100 {\n    flex-basis: 100%;\n    max-width: 100%;\n    overflow: hidden;\n    border: 1px solid rgb(130, 177, 148);\n}\n  \n.table {\n    width: 100%;\n    display: table;\n    margin: 0;\n}\n  \n@media screen and (max-width: 768px) {\n    .table {\n      display: block;\n    }\n}\n  \n.row {\n    display: table-row;\n    background: #fff;\n}\n  \n.row.header {\n    color: #ffffff;\n    background: #098b35;\n}\n  \n@media screen and (max-width: 768px) {\n    .row {\n      display: block;\n    }\n  \n    .row.header {\n      padding: 0;\n      height: 0px;\n    }\n  \n    .row.header .cell {\n      display: none;\n    }\n  \n    .row .cell:before {\n      font-family: Poppins-Bold;\n      font-size: 12px;\n      color: #808080;\n      line-height: 1.2;\n      text-transform: uppercase;\n      font-weight: unset !important;\n  \n      margin-bottom: 13px;\n      content: attr(data-title);\n      min-width: 98px;\n      display: block;\n    }\n}\n  \n.cell {\n    display: table-cell;\n}\n  \n@media screen and (max-width: 768px) {\n    .cell {\n      display: block;\n    }\n}\n  \n.row .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 15px;\n    color: #666666;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 20px;\n    padding-bottom: 20px;\n    padding-left: 10px;\n    border-bottom: 1px solid #f2f2f2;\n}\n.row .cell:not(:last-child) {\n    border-right: 1px dashed #cae0d5;\n}\n.row.header .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 18px;\n    color: #fff;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 19px;\n    padding-bottom: 19px;\n}\n  \n.table, .row {\n    width: 100% !important;\n}\n  \n.row:hover {\n    background-color: #f1f7f5;\n    cursor: pointer;\n}\n\n.row.header:hover {\n    background-color: #01721d;\n    cursor: pointer;\n}\n  \n@media (max-width: 768px) {\n    .row {\n      border-bottom: 1px solid #f2f2f2;\n      padding-bottom: 18px;\n      padding-top: 10px;\n      padding-right: 15px;\n      margin: 0;\n    }\n    \n    .row .cell {\n      border: none;\n      padding-left: 30px;\n      padding-top: 0px;\n      padding-bottom: 0px;\n    }\n    \n    .row .cell {\n      font-family: \"Poppins-Regular\";\n      font-size: 18px;\n      color: #555555;\n      line-height: 1.2;\n      font-weight: unset !important;\n    }\n\n    .row .cell:not(:last-child) {\n        border-right: none;\n    }\n  \n    .table, .row, .cell {\n      width: 100% !important;\n    }\n}\n\n.pagination-container {\n    flex: 0 1 100%;\n    text-align: center;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    color: #666666;\n    font-family: \"Poppins-Regular\";\n}\n\n.pagination-container .show-all-container {\n    margin-top: 10px;\n}\n.pagination-container .show-all-container input {\n    margin-right: 8px;\n}\n\n.pagination-container select {\n    font-size: 14px;\n}\n.pagination-container .pagination-control {\n    background-color: #098b35;\n    border: none;\n    color: #FFFFFF;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 16px;\n    outline: 0;\n    padding: 20px;\n    font-weight: 700;\n    cursor: pointer;\n}\n\n.pagination-container .pagination-control:hover {\n    background-color: #01721d;\n}\n\n.pagination-container .pagination-control:disabled {\n    background-color: #e7e7e7;\n    color: grey;\n    cursor: not-allowed;\n}", ""]);
+exports.push([module.i, "*, *:before, *:after {\n\tbox-sizing: border-box;\n}\n\n.icons-container {\n    position: relative;\n}\n.icon {\n    display: inline-block;\n    width: 0.8em;\n    height: 0.8em;\n    stroke-width: 0;\n    stroke: currentColor;\n    fill: currentColor;\n    vertical-align: middle;\n    margin: 0 4px;\n}\n.icon.triangle-up {\n    position: absolute;\n    opacity: 0.4;\n    top: 0px;\n    left: 0px;\n}\n.icon.triangle-down {\n    position: absolute;\n    opacity: 0.4;\n    top: 0.5em;\n    left: 0px;\n}\n.icon.active {\n    opacity: 1;\n}\n  \n.limiter {\n    width: 100%;\n    margin: 0 auto;\n}\n  \n.container-table100 {\n    width: 100%;\n  \n    display: -webkit-box;\n    display: -webkit-flex;\n    display: -moz-box;\n    display: -ms-flexbox;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-wrap: wrap;\n    padding: 33px 30px;\n}\n\n.search-container {\n    flex-basis: 100%;\n    margin-bottom: 20px;\n    max-width: 100%;\n}\n\n.table-search {\n    width: 250px;\n    box-sizing: border-box;\n    border: 2px solid #ccc;\n    font-size: 16px;\n    background-color: white;\n    background-position: 10px 10px; \n    background-repeat: no-repeat;\n    padding: 12px 20px;\n}  \n.wrap-table100 {\n    flex-basis: 100%;\n    max-width: 100%;\n    overflow: hidden;\n    border: 1px solid rgb(130, 177, 148);\n}\n  \n.table {\n    width: 100%;\n    display: table;\n    margin: 0;\n}\n  \n@media screen and (max-width: 768px) {\n    .table {\n      display: block;\n    }\n}\n  \n.row {\n    display: table-row;\n    background: #fff;\n}\n  \n.row.header {\n    color: #ffffff;\n    background: #098b35;\n}\n  \n@media screen and (max-width: 768px) {\n    .row {\n      display: block;\n    }\n  \n    .row.header {\n      padding: 0;\n      height: 0px;\n    }\n  \n    .row.header .cell {\n      display: none;\n    }\n  \n    .row .cell:before {\n      font-family: Poppins-Bold;\n      font-size: 12px;\n      color: #808080;\n      line-height: 1.2;\n      text-transform: uppercase;\n      font-weight: unset !important;\n  \n      margin-bottom: 13px;\n      content: attr(data-title);\n      min-width: 98px;\n      display: block;\n    }\n}\n  \n.cell {\n    display: table-cell;\n}\n  \n@media screen and (max-width: 768px) {\n    .cell {\n      display: block;\n    }\n}\n  \n.row .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 15px;\n    color: #666666;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 20px;\n    padding-bottom: 20px;\n    padding-left: 10px;\n    border-bottom: 1px solid #f2f2f2;\n}\n.row .cell:not(:last-child) {\n    border-right: 1px dashed #cae0d5;\n}\n.row.header .cell {\n    font-family: \"Poppins-Regular\";\n    font-size: 18px;\n    color: #fff;\n    line-height: 1.2;\n    font-weight: unset !important;\n  \n    padding-top: 19px;\n    padding-bottom: 19px;\n}\n  \n.table, .row {\n    width: 100% !important;\n}\n  \n.row:hover {\n    background-color: #f1f7f5;\n    cursor: pointer;\n}\n\n.row.header:hover {\n    background-color: #01721d;\n    cursor: pointer;\n}\n  \n@media (max-width: 768px) {\n    .row {\n      border-bottom: 1px solid #f2f2f2;\n      padding-bottom: 18px;\n      padding-top: 10px;\n      padding-right: 15px;\n      margin: 0;\n    }\n    \n    .row .cell {\n      border: none;\n      padding-left: 30px;\n      padding-top: 0px;\n      padding-bottom: 0px;\n    }\n    \n    .row .cell {\n      font-family: \"Poppins-Regular\";\n      font-size: 18px;\n      color: #555555;\n      line-height: 1.2;\n      font-weight: unset !important;\n    }\n\n    .row .cell:not(:last-child) {\n        border-right: none;\n    }\n  \n    .table, .row, .cell {\n      width: 100% !important;\n    }\n}\n\n.pagination-container {\n    flex: 0 1 100%;\n    text-align: center;\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    color: #666666;\n    font-family: \"Poppins-Regular\";\n}\n\n.pagination-container .show-all-container {\n    margin-top: 10px;\n}\n.pagination-container .show-all-container input {\n    margin-right: 8px;\n}\n\n.pagination-container select {\n    font-size: 14px;\n}\n.pagination-container .pagination-control {\n    background-color: #098b35;\n    border: none;\n    color: #FFFFFF;\n    text-align: center;\n    text-decoration: none;\n    display: inline-block;\n    font-size: 16px;\n    outline: 0;\n    padding: 20px;\n    font-weight: 700;\n    cursor: pointer;\n}\n\n.pagination-container .pagination-control:hover {\n    background-color: #01721d;\n}\n\n.pagination-container .pagination-control:disabled {\n    background-color: #e7e7e7;\n    color: grey;\n    cursor: not-allowed;\n}", ""]);
 
 // exports
 
