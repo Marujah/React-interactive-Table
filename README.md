@@ -1,5 +1,6 @@
 # React-interactive-Table (RiT)
 =========
+[![npm version](https://badge.fury.io/js/survey-monkey-streams.svg)](//npmjs.com/package/react-interactive-table)
 
 React-interactive-Table (RiT) is a completely customizable React table having some configurable features like search und paging.
 
