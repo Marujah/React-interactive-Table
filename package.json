@@ -1,6 +1,6 @@
 {
   "name": "react-interactive-table",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "A completely customizable React Table with search and sort options",
   "main": "build/index.js",
   "repository": {
@@ -31,11 +31,18 @@
   "devDependencies": {
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
-    "babel-loader": "^7.1.5",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
+    "babel-preset-env": "^1.5.1",
     "css-loader": "^3.5.2",
+    "eslint": "^4.19.1",
+    "eslint-config-react-app": "^2.1.0",
+    "eslint-plugin-flowtype": "^2.46.3",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.7.0",
     "file-loader": "^1.1.11",
     "prop-types": "^15.7.2",
     "style-loader": "^0.20.3",

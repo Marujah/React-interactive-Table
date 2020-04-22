@@ -8,30 +8,45 @@ export default class InteractiveTableHeaderCell extends Component {
     }
 
     getSortingIcon(sortingItem) {
-        let icon;
+        let upClassName = ['icon', 'triangle-up'];
+        let downClassName = ['icon', 'triangle-down'];
         if (sortingItem.sortable) {
             if (sortingItem.active) {
                 if (this.props.sorting) {
-                    icon = (
-                        <svg className="icon">
-                            <use xlinkHref='#icon-triangle-up'/>
-                        </svg>
-                    );
+                    upClassName.push('active');
+                    const index = downClassName.indexOf('active');
+                    if (index > -1) {
+                        downClassName.slice(index, 1);
+                    }
+                    console.log('upClassName', upClassName);
                 } else {
-                    icon = (
-                        <svg className="icon">
-                            <use xlinkHref='#icon-triangle-down'/>
-                        </svg>
-                    );
+                    downClassName.push('active');
+                    const index = upClassName.indexOf('active');
+                    if (index > -1) {
+                        upClassName.slice(index, 1);
+                    }
                 }
             } else {
-                icon = (
-                    <svg className="icon">
-                        <use xlinkHref='#icon-sort'/>
-                    </svg>
-                );
+                const indexUp = upClassName.indexOf('active');
+                const indexDown = downClassName.indexOf('active');
+                if (indexUp > -1) {
+                    upClassName.slice(indexUp, 1);
+                }
+                if (indexDown > -1) {
+                    downClassName.slice(indexDown, 1);
+                }
             }
         }
+        const icon = ((
+            <span className="icons-container">
+                <svg className={upClassName.join(' ')}>
+                    <use xlinkHref='#icon-triangle-up'/>
+                </svg>
+                <svg className={downClassName.join(' ')}>
+                    <use xlinkHref='#icon-triangle-down'/>
+                </svg>
+            </span>
+        ));
         return icon;
     }
 
@@ -54,7 +69,9 @@ InteractiveTableHeaderCell.propTypes = {
     style: PropTypes.object,
     sortingActiveState: PropTypes.bool.isRequired,
     headerItem: PropTypes.object.isRequired,
-    sorting: PropTypes.oneOfType([() => {return null}, PropTypes.bool]),
+    sorting: PropTypes.oneOfType([() => {
+        return null;
+    }, PropTypes.bool]),
     onHeaderItemClick: PropTypes.func.isRequired
-}
+};
 

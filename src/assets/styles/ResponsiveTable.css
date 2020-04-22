@@ -2,17 +2,34 @@
 	box-sizing: border-box;
 }
 
+.icons-container {
+    position: relative;
+}
 .icon {
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 0.8em;
+    height: 0.8em;
     stroke-width: 0;
     stroke: currentColor;
     fill: currentColor;
     vertical-align: middle;
     margin: 0 4px;
 }
-  
+.icon.triangle-up {
+    position: absolute;
+    opacity: 0.4;
+    top: 0px;
+    left: 0px;
+}
+.icon.triangle-down {
+    position: absolute;
+    opacity: 0.4;
+    top: 0.5em;
+    left: 0px;
+}
+.icon.active {
+    opacity: 1;
+}
 .limiter {
     width: 100%;
     margin: 0 auto;
