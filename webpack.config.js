@@ -1,6 +1,7 @@
 var path = require('path');
 
 module.exports = {
+  mode: 'development',
   entry: './src/InteractiveTable.js',
   output: {
     path: path.resolve(__dirname, 'build'),

@@ -78,7 +78,8 @@ export default class InteractiveTable extends Component {
             });
         });
         this.setState({
-            items: newArr
+            items: newArr,
+            showAllRows: true
         });
     }
 
@@ -174,7 +175,7 @@ export default class InteractiveTable extends Component {
                                     );
                                 })}
                             </div>
-                            {!showAllRows && paging && paging.maxRows && paging.maxRows > 0
+                            {!showAllRows && paging && paging.maxRows && paging.maxRows > 0 && pageCount > 1
                             ? 
                                 items.slice(currentPagenumber * paging.maxRows, (currentPagenumber * paging.maxRows) + paging.maxRows).map((item, idx) => {
                                     return(
@@ -188,7 +189,11 @@ export default class InteractiveTable extends Component {
                             :
                             items.map((item, idx) => {
                                 return(
-                                <div className="row" key={idx}>
+                                <div className="row"
+                                    key={idx}>
+                                    {/* // {...item.events && item.events.map((event) => {
+                                    //     return event={...item[event]()}
+                                    // })}> */}
                                     {Object.keys(columns).map(function (filter, idx) {
                                     return <div className="cell" key={idx}>{item[filter]}</div>
                                     })}
@@ -196,7 +201,7 @@ export default class InteractiveTable extends Component {
                                 )
                             })}
                         </div>
-                        {paging
+                        {paging && pageCount > 1
                         && (
                             <InteractiveTablePagination
                                 currentPagenumber={currentPagenumber}
