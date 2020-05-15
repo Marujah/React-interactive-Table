@@ -8,6 +8,8 @@ React-interactive-Table (RiT) is a completely customizable React table having so
 
   `npm install --save react-interactive-table`
 
+[![react-interactive-table](https://nodei.co/npm/react-interactive-table.png)](https://npmjs.org/package/react-interactive-table)
+
 ## Usage
 
 ```jsx
